@@ -1,13 +1,13 @@
-import React from 'react'
-import { Button} from '@mui/material';
+
+import DataTable from './components/DataTable';
 
 
 const App = () => {
   return (
 
     <div>
-      <h1>Hello from react app</h1>
-      <Button variant="contained" color="primary">Mui button</Button>
+      <h1 style={{display:'flex',alignItems:'center',justifyContent:'center'}}>React Assignment</h1>
+      <DataTable/>
     </div>
 
   )
