@@ -4,7 +4,7 @@ import { Box, CircularProgress, Typography } from '@mui/material';
 import { fetchPosts } from '../services/postService';
 import { Post } from '../interfaces/Post';
 
-
+interface DataTableProps {}
 const columns: GridColDef[] = [
   { field: 'userId', headerName: 'User ID', width: 100 },
   { field: 'id', headerName: 'ID', width: 100 },
@@ -12,7 +12,7 @@ const columns: GridColDef[] = [
   { field: 'body', headerName: 'Body', width: 500 },
 ];
 
-const DataTable: React.FC = () => {
+const DataTable: React.FC<DataTableProps> = () => {
   const [rows, setRows] = useState<Post[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -56,9 +56,9 @@ const DataTable: React.FC = () => {
         rows={rows}
         columns={columns}
         
-        pageSize={10}
+        
         checkboxSelection
-        disableSelectionOnClick
+      
       />
     </Box>
   );

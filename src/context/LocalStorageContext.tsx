@@ -1,6 +1,6 @@
 
 
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, PropsWithChildren, useContext, useState } from 'react';
 
 
 type User = {
@@ -27,7 +27,7 @@ export const useLocalStorage = () => {
   return context;
 };
 
-export const LocalStorageProvider: React.FC = ({ children }) => {
+export const LocalStorageProvider: React.FC<PropsWithChildren<{}>> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   
 

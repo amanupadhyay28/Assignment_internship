@@ -8,7 +8,7 @@ const UserForm: React.FC = () => {
     const [email, setEmail] = useState('');
     const [openSnackbar,setOpenSnackbar]=useState(false);
     const  navigate=useNavigate();
-    const location = useLocation<{ message: string }>();
+    const location = useLocation();
 const {login} =useLocalStorage();
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
