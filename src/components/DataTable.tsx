@@ -51,7 +51,7 @@ const DataTable: React.FC = () => {
   }
 
   return (
-    <Box sx={{ height: 600, width: '70%' }}>
+    <Box sx={{ height: '80vh', width: '70%' ,margin:'auto',marginTop:'60px'}}>
       <DataGrid
         rows={rows}
         columns={columns}

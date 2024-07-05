@@ -5,7 +5,8 @@ import {
   ListItem,
   ListItemText,
   Collapse,
-  IconButton
+  IconButton,
+  Box
 } from '@mui/material';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 
@@ -27,26 +28,7 @@ const departments: Department[] = [
     department: 'engineering',
     sub_departments: ['frontend', 'backend', 'devops']
   },
-  {
-    department: 'sales',
-    sub_departments: ['inside_sales', 'field_sales']
-  },
-  {
-    department: 'marketing',
-    sub_departments: ['content', 'performance', 'brand']
-  },
-  {
-    department: 'hr',
-    sub_departments: ['recruitment', 'employee_relations']
-  },
-  {
-    department: 'finance',
-    sub_departments: ['accounting', 'financial_planning']
-  },
-  {
-    department: 'operations',
-    sub_departments: ['logistics', 'supply_chain']
-  }
+ 
 ];
 
 const DepartmentList: React.FC = () => {
@@ -78,46 +60,57 @@ const DepartmentList: React.FC = () => {
   };
 
   return (
-    <List>
-      {departments.map(dept => (
-        <div key={dept.department}>
-          <ListItem button onClick={() => handleToggle(dept.department)}>
-            <Checkbox
-              edge="start"
-              checked={!!selected[dept.department]}
-              onChange={() => handleSelect(dept.department)}
-              tabIndex={-1}
-              disableRipple
-            />
-            <ListItemText primary={dept.department} />
-            <IconButton>
-              {open[dept.department] ? <ExpandLess /> : <ExpandMore />}
-            </IconButton>
-          </ListItem>
-          <Collapse in={!!open[dept.department]} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              {dept.sub_departments.map(subDept => (
-                <ListItem
-                  key={subDept}
-                  sx={{ pl: 4 }}
-                  button
-                  onClick={() => handleSelect(`${dept.department}-${subDept}`, true)}
-                >
-                  <Checkbox
-                    edge="start"
-                    checked={!!selected[`${dept.department}-${subDept}`]}
-                    onChange={() => handleSelect(`${dept.department}-${subDept}`, true)}
-                    tabIndex={-1}
-                    disableRipple
-                  />
-                  <ListItemText primary={subDept} />
-                </ListItem>
-              ))}
-            </List>
-          </Collapse>
-        </div>
-      ))}
-    </List>
+    <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      height="100vh"
+      width="90%"
+      margin="auto"
+    >
+      <List>
+        {departments.map(dept => (
+          <div key={dept.department}>
+            <ListItem button onClick={() => handleToggle(dept.department)}>
+              <Checkbox
+                edge="start"
+                checked={!!selected[dept.department]}
+                onChange={() => handleSelect(dept.department)}
+                tabIndex={-1}
+                disableRipple
+                style={{ marginRight: '8px' }}
+              />
+              <ListItemText primary={dept.department} />
+              <IconButton>
+                {open[dept.department] ? <ExpandLess /> : <ExpandMore />}
+              </IconButton>
+            </ListItem>
+            <Collapse in={!!open[dept.department]} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                {dept.sub_departments.map(subDept => (
+                  <ListItem
+                    key={subDept}
+                    style={{ paddingLeft: '32px' }}
+                    button
+                    onClick={() => handleSelect(`${dept.department}-${subDept}`, true)}
+                  >
+                    <Checkbox
+                      edge="start"
+                      checked={!!selected[`${dept.department}-${subDept}`]}
+                      onChange={() => handleSelect(`${dept.department}-${subDept}`, true)}
+                      tabIndex={-1}
+                      disableRipple
+                      style={{ marginRight: '8px' }}
+                    />
+                    <ListItemText primary={subDept} />
+                  </ListItem>
+                ))}
+              </List>
+            </Collapse>
+          </div>
+        ))}
+      </List>
+    </Box>
   );
 };
 

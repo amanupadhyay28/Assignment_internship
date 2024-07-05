@@ -1,17 +1,30 @@
 import React, { useState } from 'react';
-import { TextField, Button, Container, Typography, Box } from '@mui/material';
-
+import { TextField, Button, Container, Typography, Box ,Snackbar,Alert} from '@mui/material';
+import { useNavigate,useLocation } from 'react-router-dom';
+import { useLocalStorage } from '../context/LocalStorageContext';
 const UserForm: React.FC = () => {
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
-
-    const handleSubmit = (event: React.FormEvent) => {
+    const [openSnackbar,setOpenSnackbar]=useState(false);
+    const  navigate=useNavigate();
+    const location = useLocation<{ message: string }>();
+const {login} =useLocalStorage();
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (name && phone && email) {
-            localStorage.setItem('userDetails', JSON.stringify({ name, phone, email }));
+            login({name,phone,email});
+            setOpenSnackbar(true);
+            
+            setName('');
+            setPhone('');
+            setEmail('');
+            navigate('/table')
         }
     };
+    const handlecloseSnackbar=()=>{
+        setOpenSnackbar(false);
+    }
 
     return (
         <Container sx={{
@@ -21,6 +34,8 @@ const UserForm: React.FC = () => {
             alignItems: 'center',
             height: '100vh'
         }}>
+           
+
             <Box
                 sx={{
                     width: '80%',
@@ -34,9 +49,14 @@ const UserForm: React.FC = () => {
                     alignItems: 'center'
                 }}
             >
-                <Typography variant="h4" gutterBottom>
+                   <Typography variant="h4" gutterBottom>
                     User Information Form
                 </Typography>
+                {location.state?.message && (
+                    <Typography variant="body1" color="error" gutterBottom>
+                        {location.state.message}
+                    </Typography>
+                )}
                 <form onSubmit={handleSubmit} style={{ width: '100%' }}>
                     <TextField
                         label="Name"
@@ -72,6 +92,16 @@ const UserForm: React.FC = () => {
                     </Box>
                 </form>
             </Box>
+            <Snackbar 
+                open={openSnackbar} 
+                autoHideDuration={2000} 
+                onClose={handlecloseSnackbar}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+            >
+                <Alert onClose={handlecloseSnackbar} severity="success" sx={{ width: '100%' }}>
+                    Form submitted successfully! You can now go to view Page
+                </Alert>
+            </Snackbar>
         </Container>
     );
 };

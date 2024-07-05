@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
 const Navbar: React.FC = () => {
+  
   const appBarStyle = {
     backgroundColor: '#3f51b5',
   };
@@ -37,6 +38,9 @@ const Navbar: React.FC = () => {
           </Button>
           <Button color="inherit" component={Link} to="/accordian" style={linkStyle}>
             Accordian
+          </Button>
+          <Button color="inherit" component={Link} to="/logout" style={linkStyle}>
+            Logout
           </Button>
         </Toolbar>
       </AppBar>
