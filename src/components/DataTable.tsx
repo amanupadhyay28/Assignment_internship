@@ -4,6 +4,7 @@ import { Box, CircularProgress, Typography } from '@mui/material';
 import { fetchPosts } from '../services/postService';
 import { Post } from '../interfaces/Post';
 
+
 const columns: GridColDef[] = [
   { field: 'userId', headerName: 'User ID', width: 100 },
   { field: 'id', headerName: 'ID', width: 100 },
