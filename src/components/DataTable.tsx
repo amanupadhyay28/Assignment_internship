@@ -3,6 +3,7 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { Box, CircularProgress, Typography } from '@mui/material';
 import { fetchPosts } from '../services/postService';
 import { Post } from '../interfaces/Post';
+import Accordian from '../components/Accordian'
 
 interface DataTableProps {}
 const columns: GridColDef[] = [
@@ -52,6 +53,7 @@ const DataTable: React.FC<DataTableProps> = () => {
 
   return (
     <Box sx={{ height: '80vh', width: '70%' ,margin:'auto',marginTop:'60px'}}>
+     
       <DataGrid
         rows={rows}
         columns={columns}
@@ -60,6 +62,7 @@ const DataTable: React.FC<DataTableProps> = () => {
         checkboxSelection
       
       />
+    <Accordian/>
     </Box>
   );
 }

@@ -34,10 +34,7 @@ const Navbar: React.FC = () => {
             Home
           </Button>
           <Button color="inherit" component={Link} to="/table" style={linkStyle}>
-            DataTable
-          </Button>
-          <Button color="inherit" component={Link} to="/accordian" style={linkStyle}>
-            Accordian
+            SECOND PAGE
           </Button>
           <Button color="inherit" component={Link} to="/logout" style={linkStyle}>
             Logout

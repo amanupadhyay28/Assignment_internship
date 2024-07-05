@@ -7,6 +7,8 @@ import {
   Collapse,
   IconButton,
   Box
+  ,
+  Typography
 } from '@mui/material';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 
@@ -67,7 +69,12 @@ const DepartmentList: React.FC = () => {
       height="100vh"
       width="90%"
       margin="auto"
+      marginTop='-200px'
+      flexDirection='column'
     >
+       <Typography variant="h4" gutterBottom>
+                  Second Component
+                </Typography>
       <List>
         {departments.map(dept => (
           <div key={dept.department}>

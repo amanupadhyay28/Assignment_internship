@@ -27,7 +27,7 @@ const {isAuthenticated} =useLocalStorage();
         key={index}
         path={route.path}
         element={
-          route.path === '/table' && !isAuthenticated || route.path==='/accordian' && !isAuthenticated? (
+          route.path === '/table' && !isAuthenticated? (
             <>
               <Navigate to="/" replace state={{ message: 'Please fill out the form first.To access Second Page' }} />
                
